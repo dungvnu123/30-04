@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Việt Nam Quê Hương Tôi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #001f3f, #DA251D, #FFD700);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #001f3f, #DA251D, #FFD700);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #intro-screen.hidden {
+            display: none;
+        }
+
+        #intro-screen h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(to right, #DA251D, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+        }
+
+        .intro-subtitle {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(to right, #FFD700, #DA251D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 15px 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 20px;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        h1 {
+           /Local/Volumes/Seagate Expansion Drive/My Passport/Backup/Work/Learning/Website/flag.html font-size: 3rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(to right, #DA251D, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .flag-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 10px auto;
+            perspective: 1200px;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+        }
+
+        .flag {
+            width: 100%;
+            height: 100%;
+            background-color: #DA251D;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: wave 8s linear infinite;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid #B22222;
+        }
+
+        .star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FFD700;
+            font-size: 100px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 1);
+            animation: sparkle 2s ease-in-out infinite alternate, rotateStar 10s linear infinite;
+        }
+
+        .video-container {
+            margin: 10px 0;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            animation: slideUp 2s ease-in-out;
+        }
+
+        .scrolling-text {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .scrolling-text span {
+            display: inline-block;
+            font-size: 1.6rem;
+            font-weight: bold;
+            animation: scroll 20s linear infinite;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .btn-container {
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #DA251D, #FFD700);
+            color: white;
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #FFD700, #DA251D) 1;
+            border-radius: 50",
+            "50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border-image: linear-gradient(45deg, #DA251D, #FFD700) 1;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotateY(0deg) rotateX(6deg); }
+            50% { transform: rotateY(12deg) rotateX(-6deg); }
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        @keyframes rotateStar {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @media (max-width: 600px) {
+            #intro-screen h1 { font-size: 2rem; }
+            .intro-subtitle { font-size: 1.4rem; }
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .flag-container { width: 300px; height: 300px; }
+            .star { font-size: 80px; }
+            .video-container { max-width: 90%; }
+            .footer { font-size: 1rem; }
+            .scrolling-text span { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="intro-screen">
+        <h1>Chào Mừng Đến Với Kỷ Niệm 30/04</h1>
+        <p class="intro-subtitle">Chào mừng 50 năm giải phóng Miền Nam thống nhất đất nước</p>
+        <button class="btn" onclick="enterMain()">Vào Chương Trình</button>
+    </div>
+
+    <div id="main-content">
+        <div class="particles" id="particles"></div>
+
+        <audio id="backgroundMusic" loop>
+            <source src="h1ub61y20a.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="header">
+            <h1>VIỆT NAM QUÊ HƯƠNG TÔI</h1>
+            <p class="subtitle">Chào mừng ngày 30/04</p>
+        </div>
+
+        <div class="flag-container">
+            <div class="flag">
+                <div class="star">★</div>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <video controls loop>
+                <source src="video.mp4" type="video/mp4">
+                Your browser does not support the video element.
+            </video>
+        </div>
+
+        <div class="footer">
+            <p>30/4/1975 - 30/4/2025</p>
+            <p>Tự hào dân tộc Việt Nam anh hùng</p>
+        </div>
+
+        <div class="scrolling-text" id="scrollingText">
+            <span id="scrollText">Chào mừng 50 năm kỷ niệm giải phóng Miền Nam thống nhất đất nước</span>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn" onclick="showInfo()">Thông tin</button>
+            <button class="btn" onclick="toggleMusic()">Toggle Music</button>
+        </div>
+    </div>
+
+    <script>
+
+        document.getElementById('main-content').style.display = 'none';
+
+        function enterMain() {
+            const introScreen = document.getElementById('intro-screen');
+            const mainContent = document.getElementById('main-content');
+            introScreen.classList.add('hidden');
+            mainContent.style.display = 'flex';
+            setTimeout(() => {
+                mainContent.classList.add('visible');
+            }, 10);
+
+            const music = document.getElementById('backgroundMusic');
+            music.play().catch(e => console.log("Autoplay prevented:", e));
+        }
+
+        const particlesContainer = document.getElementById('particles');
+        const colors = ['#DA251D', '#FFD700', '#FFFFFF'];
+        const particles = [];
+
+        function createParticle(x, y, isMain = false) {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            const size = isMain ? Math.random() * 5 + 2 : Math.random() * 3 + 1;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.borderRadius = '50%';
+            particle.style.opacity = 1;
+            particle.style.boxShadow = isMain ? '0 0 10px ' + particle.style.backgroundColor : 'none';
+
+            const angle = Math.random() * Math.PI * 2;
+            const speed = isMain ? Math.random() * 10 + 3 : Math.random() * 6 + 2;
+            const life = isMain ? Math.random() * 100 + 50 : Math.random() * 70 + 40;
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+
+            particlesContainer.appendChild(particle);
+
+            return { element: particle, x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, life, maxLife: life, gravity: 0.15 + Math.random() * 0.25, alpha: 1, decay: (Math.random() * 5 + 4) / life };
+        }
+
+        function updateParticles() {
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.life--;
+                p.alpha = p.life / p.maxLife;
+
+                p.element.style.left = p.x + 'px';
+                p.element.style.top = p.y + 'px';
+                p.element.style.opacity = p.alpha;
+
+                if (p.life <= 0 || p.y > window.innerHeight) {
+                    p.element.remove();
+                    particles.splice(index, 1);
+                }
+            });
+        }
+
+        function createFirework() {
+            if (particles.length < 1500) {
+                const x = Math.random() * (window.innerWidth - 600) + 300;
+                const y = Math.random() * 200 + 100;
+                particles.push(createParticle(x, y, true));
+                for (let i = 0; i < Math.random() * 40 + 80; i++) {
+                    particles.push(createParticle(x, y));
+                }
+            }
+        }
+        function createStars() {
+            const starsCount = 120;
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                const size = Math.random() * 4 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.backgroundColor = 'white';
+                star.style.borderRadius = '50%';
+                star.style.boxShadow = '0 0 12px white';
+                star.style.left = Math.random() * window.innerWidth + 'px';
+                star.style.top = Math.random() * window.innerHeight + 'px';
+                star.style.opacity = Math.random() * 0.5 + 0.2;
+
+                const vx = Math.random() * 0.2 - 0.1;
+                const vy = Math.random() * 0.2 - 0.1;
+
+                document.body.appendChild(star);
+
+                function moveStar() {
+                    let x = parseFloat(star.style.left);
+                    let y = parseFloat(star.style.top);
+                    x += vx;
+                    y += vy;
+                    if (x < 0 || x > window.innerWidth) vx = -vx;
+                    if (y < 0 || y > window.innerHeight) vy = -vy;
+                    star.style.left = x + 'px';
+                    star.style.top = y + 'px';
+                    star.style.opacity = Math.random() * 0.5 + 0.2;
+                }
+
+                setInterval(moveStar, 50);
+            }
+        }
+
+        function updateScrollTextColors() {
+            const scrollText = document.getElementById('scrollText');
+            const text = scrollText.textContent;
+            scrollText.innerHTML = '';
+            const tick = Date.now() / 1000;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const ratio = (Math.sin(i / 5 + tick) + 1) / 2;
+                const r = Math.round(218 + (255 - 218) * ratio);
+                const g = Math.round(37 + (215 - 37) * ratio);
+                const b = Math.round(29 * (1 - ratio));
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.color = `rgb(${r}, ${g}, ${b})`;
+                if (['5', '0', '/'].includes(char)) {
+                    span.style.textShadow = '0 0 8px rgba(255, 215, 0, 1)';
+                }
+                scrollText.appendChild(span);
+            }
+        }
+
+        // Quản lý âm nhạc
+        const music = document.getElementById('backgroundMusic');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+            } else {
+                music.play().catch(e => console.log("Autoplay prevented:", e));
+                isPlaying = true;
+            }
+        }
+
+        // Hàm xử lý sự kiện
+        function showInfo() {
+            alert("Chương trình kỷ niệm 50 năm ngày Giải phóng miền Nam thống nhất đất nước (30/04/1975 - 30/04/2025)");
+        }
+
+        // Khởi tạo
+        window.onload = function() {
+            createStars();
+
+            setInterval(() => {
+                if (Math.random() < 0.1) createFirework();
+            }, 1000);
+
+            setInterval(updateParticles, 20);
+            setInterval(updateScrollTextColors, 100);
+
+            document.addEventListener('mousemove', (e) => {
+                for (let i = 0; i < 3; i++) {
+                    particles.push(createParticle(e.clientX, e.clientY));
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                for (let i = 0; i < 10; i++) {
+                    particles.push(createParticle(e.clientX, e.clientY, true));
+                }
+            });
+        };
+    </script>
+</body>
+</html>
